@@ -1,0 +1,15 @@
+{
+  "name": "gesture-drum-machine",
+  "version": "1.0.0",
+  "description": "Play drum machine with hand gesture",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Marcello Silva",
+  "license": "ISC",
+  "repository": {},
+  "dependencies": {
+    "handtrackjs": "0.0.13"
+  }
+}

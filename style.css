@@ -1,0 +1,53 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.content {
+  display: grid;
+  grid-template-areas:
+    "hihat ride"
+    "video video"
+    "snare boom"
+    "test test";
+  grid-template-columns: auto auto;
+  justify-content: center;
+}
+
+.top-left {
+  grid-area: hihat;
+  justify-self: start;
+}
+
+.top-right {
+  grid-area: ride;
+  justify-self: end;
+}
+
+#webcam {
+  grid-area: video;
+  transform: rotateY(180deg);
+  width: 227px;
+  height: 227px;
+}
+
+.bottom-left {
+  grid-area: snare;
+  justify-self: start;
+}
+
+.bottom-right {
+  grid-area: boom;
+  justify-self: end;
+}
+
+.test {
+  grid-area: test;
+  justify-self: center;
+}
+
+.examples-text {
+  text-align: center;
+}
