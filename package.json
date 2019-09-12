@@ -10,6 +10,7 @@
   "license": "ISC",
   "repository": {},
   "dependencies": {
-    "handtrackjs": "0.0.13"
+    "@tensorflow/tfjs": "^1.2.9",
+    "@tensorflow/tfjs-node": "^1.2.9"
   }
 }
