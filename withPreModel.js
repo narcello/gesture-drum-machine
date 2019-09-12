@@ -1,3 +1,6 @@
+const {modelFromJSON} = require("@tensorflow/tfjs-layers/dist/models");
+const myModel = require("./myModel/model.js");
+
 // Number of classes to classify
 const NUM_CLASSES = 4;
 // Webcam Image size. Must be 227.
@@ -25,6 +28,7 @@ class App {
   async loadClassifierAndModel() {
     this.knn = knnClassifier.create();
     this.mobilenetModule = await mobilenet.load();
+    this.myModel = await modelFromJSON(myModel);
     console.log("model loaded");
 
     this.start();
@@ -90,25 +94,11 @@ class App {
         if (numClasses > 0) {
           // If classes have been added run predict
           logits = infer();
-          const {classIndex} = await this.knn.predictClass(logits, TOPK);
+          const res = await this.myModel.predict(logits, TOPK);
+          console.log(res);
+          // const {classIndex} = await this.knn.predictClass(logits, TOPK);
 
-          playDrum(classes[classIndex]);
-
-          for (let i = 0; i < NUM_CLASSES; i++) {
-            // The number of examples for each class
-            const exampleCount = this.knn.getClassExampleCount();
-
-            // Make the predicted class bold
-            if (classIndex == i) {
-              this.infoTexts[i].style.fontWeight = "bold";
-            } else {
-              this.infoTexts[i].style.fontWeight = "normal";
-            }
-
-            // if (exampleCount[i] > 0) {
-            //   this.infoTexts[i].innerText = ` ${exampleCount[i]} - ${res.confidences[i] * 100}%`;
-            // }
-          }
+          // playDrum(classes[classIndex]);
         }
       }
 
@@ -139,7 +129,22 @@ document.getElementsByClassName("test-predictions")[0].addEventListener("click",
 
 new App();
 
-function playDrum(piece) {
-  var audio = new Audio(`./sounds/${piece}.wav`);
+function playDrum(sound) {
+  var audio = new Audio(`./sounds/${sound}.wav`);
   audio.play();
 }
+
+const predict = async inputData => {
+  for (let [key, value] of Object.entries(inputData)) {
+    inputData[key] = parseFloat(value);
+  }
+  inputData = [inputData];
+
+  let newDataTensor = tf.tensor2d(
+    inputData.map(item => [item.top_left, item.top_right, item.bottom_left, item.bottom_right]),
+    [1, 4]
+  );
+
+  let prediction = modelFromJSON(myModel).predict(newDataTensor);
+  console.log(prediction);
+};

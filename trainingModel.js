@@ -1,7 +1,7 @@
 const tf = require("@tensorflow/tfjs");
 const trainingSet = require("./training");
 const testSet = require("./testing");
-require('@tensorflow/tfjs-node')
+require("@tensorflow/tfjs-node");
 
 let trainingData, outputData, model;
 let training = true;
@@ -17,30 +17,19 @@ const init = async () => {
   console.log("saving...");
   await model.save("file://./my-model");
   console.log("Done!!!");
-
-  // if (!training) {
-  //   predictButton.disabled = false;
-  //   predictButton.onclick = () => {
-  //     const inputData = getInputData();
-  //     predict(inputData);
-  //   };
-  // }
 };
 
 const splitData = () => {
-  console.log("trainingData");
   trainingData = tf.tensor2d(
     trainingSet.map(item => [item.top_left, item.top_right, item.bottom_left, item.bottom_right]),
     [160, 4]
   );
 
-  console.log("testingData");
   testingData = tf.tensor2d(
     testSet.map(item => [item.top_left, item.top_right, item.bottom_left, item.bottom_right]),
     [20, 4]
   );
 
-  console.log("outputData");
   outputData = tf.tensor2d(
     trainingSet.map(item => [
       item.sound === "hihat" ? 1 : 0,
@@ -89,34 +78,6 @@ const predict = async inputData => {
   );
 
   let prediction = model.predict(newDataTensor);
-
-  // displayPrediction(prediction);
 };
-
-// const displayPrediction = prediction => {
-//   let predictionDiv = document.getElementsByClassName("prediction")[0];
-//   let predictionSection = document.getElementsByClassName("prediction-block")[0];
-
-//   let maxProbability = Math.max(...prediction.dataSync());
-//   let predictionIndex = prediction.dataSync().indexOf(maxProbability);
-//   let irisPrediction;
-
-//   switch (predictionIndex) {
-//     case 0:
-//       irisPrediction = "Setosa";
-//       break;
-//     case 1:
-//       irisPrediction = "Virginica";
-//       break;
-//     case 2:
-//       irisPrediction = "Versicolor";
-//       break;
-//     default:
-//       irisPrediction = "";
-//       break;
-//   }
-//   predictionDiv.innerHTML = irisPrediction;
-//   predictionSection.style.display = "block";
-// };
 
 init();
