@@ -80,4 +80,30 @@ const predict = async inputData => {
   let prediction = model.predict(newDataTensor);
 };
 
+// const displayPrediction = prediction => {
+//   let predictionDiv = document.getElementsByClassName("prediction")[0];
+//   let predictionSection = document.getElementsByClassName("prediction-block")[0];
+
+//   let maxProbability = Math.max(...prediction.dataSync());
+//   let predictionIndex = prediction.dataSync().indexOf(maxProbability);
+//   let irisPrediction;
+
+//   switch (predictionIndex) {
+//     case 0:
+//       irisPrediction = "Setosa";
+//       break;
+//     case 1:
+//       irisPrediction = "Virginica";
+//       break;
+//     case 2:
+//       irisPrediction = "Versicolor";
+//       break;
+//     default:
+//       irisPrediction = "";
+//       break;
+//   }
+//   predictionDiv.innerHTML = irisPrediction;
+//   predictionSection.style.display = "block";
+// };
+
 init();
