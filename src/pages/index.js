@@ -1,22 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Gesture drum machine with Tensorflow.js</title>
-    <!-- Load TensorFlow.js -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script> -->
-    <!-- Load MobileNet -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet"></script> -->
-    <!-- Load KNN Classifier -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/knn-classifier"></script> -->
-    <link rel="stylesheet" type="text/css" href="style.css" />
-  </head>
+import React from "react"
+import Layout from "../components/layout"
+import {App} from "../utils/withPreModel"
 
-  <body>
-    <h1>Gesture drum machine with Tensorflow.js</h1>
-
+new App()
+const IndexPage = () => (
+  <Layout>
     <main class="content">
       <section class="button-section top-left">
         <button class="button">Hihat</button>
@@ -49,10 +37,12 @@
       </section>
 
       <section class="button-section test">
-        <button class="button test-predictions predict">Test predictions</button>
+        <button class="button test-predictions predict">
+          Test predictions
+        </button>
       </section>
     </main>
+  </Layout>
+)
 
-    <script src="withPreModel.js"></script>
-  </body>
-</html>
+export default IndexPage

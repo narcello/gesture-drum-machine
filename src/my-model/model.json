@@ -10,7 +10,12 @@
           "use_bias": true,
           "kernel_initializer": {
             "class_name": "VarianceScaling",
-            "config": {"scale": 1, "mode": "fan_avg", "distribution": "normal", "seed": null}
+            "config": {
+              "scale": 1,
+              "mode": "fan_avg",
+              "distribution": "normal",
+              "seed": null
+            }
           },
           "bias_initializer": {"class_name": "Zeros", "config": {}},
           "kernel_regularizer": null,
@@ -32,7 +37,12 @@
           "use_bias": true,
           "kernel_initializer": {
             "class_name": "VarianceScaling",
-            "config": {"scale": 1, "mode": "fan_avg", "distribution": "normal", "seed": null}
+            "config": {
+              "scale": 1,
+              "mode": "fan_avg",
+              "distribution": "normal",
+              "seed": null
+            }
           },
           "bias_initializer": {"class_name": "Zeros", "config": {}},
           "kernel_regularizer": null,
